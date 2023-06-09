@@ -1,0 +1,130 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600&display=swap");
+:root {
+  --yellow: #fed330;
+  --red: #e74c3e;
+  --white: #fff;
+  --black: #222;
+  --light-color: #777;
+  --border: 0.2rem solid var(--black);
+}
+
+* {
+  font-family: "Rubik", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  text-decoration: none;
+}
+
+html {
+  font-size: 62.5%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  scroll-padding-top: 8rem;
+}
+.products .box-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 33rem);
+  gap: 1.5rem;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.products .box-container .box {
+  position: relative;
+  border: var(--border);
+  padding: 2rem;
+  overflow: hidden;
+}
+
+.products .box-container .box .fa-eye,
+.products .box-container .box .fa-shopping-cart {
+  position: absolute;
+  top: 1rem;
+  display: block;
+  height: 4.5rem;
+  width: 4.5rem;
+  line-height: 4.3rem;
+  font-size: 2rem;
+  border: var(--border);
+  background-color: var(--white);
+  cursor: pointer;
+  color: var(--black);
+  text-align: center;
+}
+
+.products .box-container .box .fa-eye {
+  left: -10rem;
+}
+
+.products .box-container .box .fa-shopping-cart {
+  right: -10rem;
+}
+
+.products .box-container .box:hover .fa-eye {
+  left: 1rem;
+}
+
+.products .box-container .box:hover .fa-shopping-cart {
+  right: 1rem;
+}
+
+.products .box-container .box .fa-eye:hover,
+.products .box-container .box .fa-shopping-cart:hover {
+  background-color: var(--black);
+  color: var(--white);
+}
+
+.products .box-container .box img {
+  height: 25rem;
+  width: 100%;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}
+
+.products .box-container .box .cat {
+  font-size: 1.7rem;
+  color: var(--light-color);
+}
+
+.products .box-container .box .cat:hover {
+  color: var(--yellow);
+}
+
+.products .box-container .box .name {
+  font-size: 2rem;
+  margin: 1rem 0;
+  color: var(--black);
+}
+
+.products .box-container .box .flex {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.products .box-container .box .flex .price {
+  margin-right: auto;
+  font-size: 2.5rem;
+  color: var(--black);
+}
+
+.products .box-container .box .flex .price span {
+  font-size: 1.8rem;
+  color: var(--light-color);
+}
+
+.products .box-container .box .flex .qty {
+  padding: 1rem;
+  font-size: 1.8rem;
+  border: var(--border);
+  color: var(--black);
+  width: 7rem;
+}
+
+.products .more-btn {
+  margin-top: 2rem;
+  text-align: center;
+}
