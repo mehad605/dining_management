@@ -44,7 +44,7 @@ html {
 }
 
 .header .nav-bar .navbar .container-fluid .navbar-brand img {
-  height: 100px; /* 10rem = 160px */
+  height: 65px; /* 10rem = 160px */
 }
 
 .header .nav-bar .navbar .container-fluid .navbar-brand {
