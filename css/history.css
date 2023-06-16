@@ -1,0 +1,89 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600&display=swap");
+:root {
+  --yellow: #fed330;
+  --red: #e74c3e;
+  --white: #fff;
+  --black: #222;
+  --light-color: #777;
+  --border: 0.2rem solid var(--black);
+}
+
+* {
+  font-family: "Rubik", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  text-decoration: none;
+}
+html {
+  font-size: 62.5%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  scroll-padding-top: 8rem;
+}
+.scoreboard {
+  background-color: grey;
+  height: 18vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-position: center;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.content {
+  text-align: center;
+  align-items: space-around;
+  width: 100%;
+  max-width: 120rem;
+  margin: 12rem auto;
+  padding: 0 2rem;
+}
+
+.column-header {
+  font-size: 2rem;
+  font-weight: bold;
+  background-color: black;
+  color: white;
+  padding: 10px;
+}
+
+.tab-content {
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
+
+.tab-item {
+  margin-bottom: 5px;
+  font-size: large;
+}
+
+#lunch-button {
+  background-color: #fed330;
+  color: black;
+  border: 1px solid black;
+  font-weight: bolder;
+  padding: 1rem 0;
+  letter-spacing: 0.2rem;
+}
+
+#dinner-button {
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+  font-weight: bolder;
+  padding: 1rem 0;
+  letter-spacing: 0.2rem;
+}
+.tab-content .text-center img {
+  margin-bottom: 10px; /* Add desired bottom margin */
+}
+
+@media (max-width: 767px) {
+  .column-header {
+    text-transform: capitalize;
+  }
+}
