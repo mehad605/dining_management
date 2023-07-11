@@ -17,14 +17,31 @@
 
       // Request permission to access the camera
       navigator.mediaDevices
-        .getUserMedia({ video: true })
-        .then((stream) => {
-          videoElement.srcObject = stream;
-          videoElement.play();
-          scanQRCode();
+        .enumerateDevices()
+        .then((devices) => {
+          const videoDevices = devices.filter(
+            (device) => device.kind === "videoinput"
+          );
+          let selectedDevice =
+            videoDevices.find((device) => device.label.includes("back")) ||
+            videoDevices[0];
+          if (selectedDevice) {
+            navigator.mediaDevices
+              .getUserMedia({ video: { deviceId: selectedDevice.deviceId } })
+              .then((stream) => {
+                videoElement.srcObject = stream;
+                videoElement.play();
+                scanQRCode();
+              })
+              .catch((error) => {
+                console.error("Error accessing camera:", error);
+              });
+          } else {
+            console.error("No video devices found.");
+          }
         })
         .catch((error) => {
-          console.error("Error accessing camera:", error);
+          console.error("Error enumerating devices:", error);
         });
 
       function scanQRCode() {
