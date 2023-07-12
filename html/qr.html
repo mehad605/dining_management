@@ -1,60 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<html>
+<head>
     <title>QR Code Scanner</title>
-  </head>
-  <body>
+    <style>
+        #video-container {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        #qr-canvas {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
     <h1>QR Code Scanner</h1>
-    <video id="qrVideo" width="320" height="240"></video>
-    <p>Scanned Value: <span id="qrValue"></span></p>
 
-    <script src="https://cdn.jsdelivr.net/npm/zxing@0.18.6"></script>
+    <div id="video-container">
+        <video id="qr-video" width="100%" height="auto" autoplay></video>
+        <canvas id="qr-canvas"></canvas>
+    </div>
+
+    <script src="https://cdn.rawgit.com/dwa012/html5-qrcode/v1.4.2/dist/html5-qrcode.min.js"></script>
     <script>
-      const videoElement = document.getElementById("qrVideo");
-      const qrValueElement = document.getElementById("qrValue");
+        function onScanSuccess(qrCodeMessage) {
+            alert("QR Code detected: " + qrCodeMessage);
+        }
 
-      // Request permission to access the camera
-      navigator.mediaDevices
-        .enumerateDevices()
-        .then((devices) => {
-          const videoDevices = devices.filter(
-            (device) => device.kind === "videoinput"
-          );
-          let selectedDevice =
-            videoDevices.find((device) => device.label.includes("back")) ||
-            videoDevices[0];
-          if (selectedDevice) {
-            navigator.mediaDevices
-              .getUserMedia({ video: { deviceId: selectedDevice.deviceId } })
-              .then((stream) => {
-                videoElement.srcObject = stream;
-                videoElement.play();
-                scanQRCode();
-              })
-              .catch((error) => {
-                console.error("Error accessing camera:", error);
-              });
-          } else {
-            console.error("No video devices found.");
-          }
-        })
-        .catch((error) => {
-          console.error("Error enumerating devices:", error);
-        });
+        function onScanError(errorMessage) {
+            console.error(errorMessage);
+        }
 
-      function scanQRCode() {
-        const codeReader = new ZXing.BrowserQRCodeReader();
-        codeReader.decodeFromVideoElement(videoElement, (result, error) => {
-          if (result) {
-            qrValueElement.textContent = result.text;
-          }
-          if (error && !(error instanceof ZXing.NotFoundException)) {
-            console.error("Error decoding QR code:", error);
-          }
-        });
-      }
+        function startScanner() {
+            const html5QrcodeScanner = new Html5QrcodeScanner(
+                "qr-video",
+                { fps: 10, qrbox: 250 },
+                /* verbose= */ false
+            );
+
+            html5QrcodeScanner.render(onScanSuccess, onScanError);
+        }
+
+        startScanner();
     </script>
-  </body>
+</body>
 </html>
